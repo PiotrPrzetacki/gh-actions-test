@@ -18,7 +18,6 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     permissions: "read-all"
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -28,11 +27,11 @@ jobs:
           ls
       # Runs a single command using the runners shell
       - name: Publish Markdown to Confluence
-        uses: TTengs/MarkdownToConfluence@v3
+        uses: markdown-confluence/publish-action@v5
         with:
-          fileslocation: './'
-          should_upload: true
-          confluence_url: 'https://byleco11.atlassian.net/wiki'
-          confluence_space_key: '~71202041b03c33f165406aaa4eef4d8d4dafeb'
-          auth_username: ${{ secrets.ATLASSIAN_USERNAME }}
-          auth_api_token: ${{ secrets.ATLASSIAN_API_TOKEN }}
+          confluenceBaseUrl: ${{ secrets.CONFLUENCE_URL }}
+          confluenceParentId: 2719762
+          atlassianUserName: ${{ secrets.ATLASSIAN_USERNAME }}
+          atlassianApiToken: ${{ secrets.ATLASSIAN_API_TOKEN }}
+          folderToPublish: docs
+          contentRoot: './'
