@@ -25,11 +25,11 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Publish Markdown to Confluence
-        uses: markdown-confluence/publish@v1
+        uses: markdown-confluence/publish-action@v5
         with:
           confluenceBaseUrl: ${{ secrets.CONFLUENCE_URL }}
           confluenceParentId: 2719762
           atlassianUserName: ${{ secrets.ATLASSIAN_USERNAME }}
           atlassianApiToken: ${{ secrets.ATLASSIAN_API_TOKEN }}
           folderToPublish: .
-          contentRoot: 
+          contentRoot: /docs
