@@ -23,7 +23,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-
+      - name: get pwd
+        run: |
+          echo pwd
       # Runs a single command using the runners shell
       - name: Publish Markdown to Confluence
         uses: markdown-confluence/publish-action@v5
@@ -32,4 +34,4 @@ jobs:
           confluenceParentId: 2719762
           atlassianUserName: ${{ secrets.ATLASSIAN_USERNAME }}
           atlassianApiToken: ${{ secrets.ATLASSIAN_API_TOKEN }}
-          contentRoot: ./
+          contentRoot: docs
