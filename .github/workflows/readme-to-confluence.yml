@@ -33,4 +33,4 @@ jobs:
           confluenceParentId: 2719762
           atlassianUserName: ${{ secrets.ATLASSIAN_USERNAME }}
           atlassianApiToken: ${{ secrets.ATLASSIAN_API_TOKEN }}
-          contentRoot: ${{ secrets.GITHUB_WORKSPACE }}
+          contentRoot: .
