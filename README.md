@@ -1,1 +1,16 @@
-# gh-actions-test
+# GitHub actions test
+teraz będzie test
+
+### testy
+to będzie:
+- lista
+- i
+- to
+- nienumerowana
+
+| Syntax      | Description |
+| ----------- | ----------- |
+| Header      | Title       |
+| Paragraph   | Text        |
+
+Ten *tekst* może być **pogrubiony**
