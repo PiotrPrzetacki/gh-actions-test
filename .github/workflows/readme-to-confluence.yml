@@ -17,6 +17,7 @@ jobs:
   upload:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    permissions: "read-all"
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -31,4 +32,4 @@ jobs:
           confluenceParentId: 2719762
           atlassianUserName: ${{ secrets.ATLASSIAN_USERNAME }}
           atlassianApiToken: ${{ secrets.ATLASSIAN_API_TOKEN }}
-          folderToPublish: docs
+          folderToPublish: /docs
