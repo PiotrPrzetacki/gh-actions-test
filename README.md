@@ -13,4 +13,4 @@ to będzie:
 | Header      | Title       |
 | Paragraph   | Text        |
 
-Ten *tekst* może być **pogrubiony**
+Ten *tekst* może nie być **pogrubiony**
