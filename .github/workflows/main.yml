@@ -50,3 +50,9 @@ jobs:
       run: |
         pwd
         benchy run bird -q ./dev/dev.json -d ./dev/dev_databases -l 20 -m gpt-4o
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: results
+        path: ./*.json
