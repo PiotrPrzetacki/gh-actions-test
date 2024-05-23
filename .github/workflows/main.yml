@@ -44,8 +44,8 @@ jobs:
     - if: ${{ steps.cache-bird-dataset.outputs.cache-hit != 'true' }}
       name: Download Bird dataset
       run: |
-        benchy download-dataset bird -o $DATASETS_PATH
+        benchy download-dataset bird -o ~/datasets/bird
 
     - name: Run benchmark
       run: |
-        benchy run bird -q ~/datasets/dev/dev.json -d ~/datasets/dev/dev/dev_databases -l 20 -m gpt-4o
+        benchy run bird -q ~/datasets/bird/dev/dev.json -d ~/datasets/bird/dev/dev/dev_databases -l 20 -m gpt-4o
