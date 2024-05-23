@@ -19,6 +19,7 @@ jobs:
         repository: BluesoftInternship/Text-To-SQL-Benchmark
         token: ${{ secrets.PAT }}
         path: bench
+        ref: dev
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -28,7 +29,6 @@ jobs:
     - name: Install dependencies
       run: |
         cd bench
-        git checkout dev
         python -m pip install --upgrade pip
         pip install .
 
