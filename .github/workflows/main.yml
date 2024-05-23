@@ -38,7 +38,7 @@ jobs:
       env:
         cache-name: cache-bird-dataset
       with:
-        path: ~/datasets/bird
+        path: ./dev
         key: bird-dataset
 
     - if: ${{ steps.cache-bird-dataset.outputs.cache-hit != 'true' }}
@@ -48,4 +48,5 @@ jobs:
 
     - name: Run benchmark
       run: |
+        pwd
         benchy run bird -q ./dev/dev.json -d ./dev/dev_databases -l 20 -m gpt-4o
