@@ -18,6 +18,7 @@ jobs:
       with:
         repository: BluesoftInternship/Text-To-SQL-Benchmark
         token: ${{ secrets.PAT }}
+        path: bench
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -26,10 +27,9 @@ jobs:
 
     - name: Install dependencies
       run: |
-        echo ls
-        ls
+        ls -a
         python -m pip install --upgrade pip
-        pip install .
+        pip install ./bench
 
     - name: Cache Bird dataset
       id: cache-bird-dataset
