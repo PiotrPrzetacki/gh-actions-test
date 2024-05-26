@@ -5,6 +5,7 @@ on:
 
 env:
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  QUESTIONS_LIMIT: ${{ vars.limit }}
 
 jobs:
   benchmark:
@@ -51,7 +52,7 @@ jobs:
 
     - name: Run benchmark
       run: |
-        benchy run bird -d ./dev/dev_databases -q ./dev/dev.json -l 10 -m gpt-3.5-turbo --save-json
+        benchy run bird -d ./dev/dev_databases -q ./dev/dev.json -l $QUESTIONS_LIMIT -m gpt-3.5-turbo --save-json
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
