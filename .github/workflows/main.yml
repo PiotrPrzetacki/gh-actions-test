@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
 
 env:
-  COMMIT_ID: ${{ $GITHUB_SHA }}
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
 jobs:
@@ -12,6 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Set COMMIT_ID
+      run: |
+        if [[ -n "${{ github.sha }}" ]]; then 
+          echo "COMMIT_ID=${{ github.sha }}" >> $GITHUB_ENV
+        fi
     - name: Checkout code
       uses: actions/checkout@v4
       with:
