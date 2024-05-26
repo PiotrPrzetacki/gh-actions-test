@@ -14,7 +14,7 @@ jobs:
     - name: Set COMMIT_ID
       run: |
         if [[ -n "${{ github.sha }}" ]]; then 
-          echo "COMMIT_ID=${{ github.sha }}" >> $GITHUB_ENV
+          echo "COMMIT_ID=`git rev-parse --short ${{ github.sha }}`" >> $GITHUB_ENV
         fi
     - name: Checkout code
       uses: actions/checkout@v4
@@ -51,7 +51,7 @@ jobs:
 
     - name: Run benchmark
       run: |
-        benchy run bird -d ./dev/dev_databases -q ./dev/dev.json -l 10 -m gpt-3.5-turbo
+        benchy run bird -d ./dev/dev_databases -q ./dev/dev.json -l 10 -m gpt-3.5-turbo --save-json
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
