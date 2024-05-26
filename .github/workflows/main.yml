@@ -47,11 +47,11 @@ jobs:
     - if: ${{ steps.cache-bird-dataset.outputs.cache-hit != 'true' }}
       name: Download Bird dataset
       run: |
-        benchy download-dataset bird -o ./datasets
+        benchy download-dataset bird
 
     - name: Run benchmark
       run: |
-        benchy run bird -d ./datasets/dev/dev_databases -q ./datasets/dev/dev.json -l 10 -m gpt-3.5-turbo
+        benchy run bird -d ./dev/dev_databases -q ./dev/dev.json -l 10 -m gpt-3.5-turbo
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
