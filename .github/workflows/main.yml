@@ -4,8 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  DATASETS_PATH: ~/datasets
-  OUTPUT_PATH: ./output
+  COMMIT_ID: ${{ $GITHUB_SHA }}
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
 jobs:
@@ -18,7 +17,7 @@ jobs:
       with:
         repository: BluesoftInternship/Text-To-SQL-Benchmark
         token: ${{ secrets.PAT }}
-        path: bench
+        path: benchmark
         ref: dev
 
     - name: Set up Python
@@ -28,7 +27,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        cd bench
+        cd benchmark
         python -m pip install --upgrade pip
         pip install .
 
@@ -44,12 +43,11 @@ jobs:
     - if: ${{ steps.cache-bird-dataset.outputs.cache-hit != 'true' }}
       name: Download Bird dataset
       run: |
-        benchy download-dataset bird
+        benchy download-dataset bird -o ./datasets
 
     - name: Run benchmark
       run: |
-        pwd
-        benchy run bird -q ./dev/dev.json -d ./dev/dev_databases -l 20 -m gpt-4o
+        benchy run bird -d ./datasets/bird -l 20 -m gpt-4o
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
