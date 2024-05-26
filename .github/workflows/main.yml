@@ -51,7 +51,7 @@ jobs:
 
     - name: Run benchmark
       run: |
-        benchy run bird -d ./datasets/bird -l 20 -m gpt-4o
+        benchy run bird -d ./datasets/dev/dev_databases -q ./datasets/dev/dev.json -l 10 -m gpt-3.5-turbo
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
