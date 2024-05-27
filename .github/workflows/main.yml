@@ -36,7 +36,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install .
 
-    - name: Cache Bird dataset
+    - if: ${{ vars.benchmark == 'bird' }}
+      name: Cache Bird dataset
       id: cache-bird-dataset
       uses: actions/cache@v4
       env:
@@ -45,14 +46,29 @@ jobs:
         path: ./bird
         key: bird-dataset
 
-    - if: ${{ steps.cache-bird-dataset.outputs.cache-hit != 'true' }}
+    - if: ${{ vars.benchmark == 'bird' && steps.cache-bird-dataset.outputs.cache-hit != 'true' }}
       name: Download Bird dataset
       run: |
         benchy download-dataset bird
 
+    - if: ${{ vars.benchmark == 'spider' }}
+      name: Cache Spider dataset
+      id: cache-spider-dataset
+      uses: actions/cache@v4
+      env:
+        cache-name: cache-spider-dataset
+      with:
+        path: ./spider
+        key: bird-dataset
+
+    - if: ${{ vars.benchmark == 'spider' && steps.cache-bird-dataset.outputs.cache-hit != 'true' }}
+      name: Download Bird dataset
+      run: |
+        benchy download-dataset spider
+
     - name: Run benchmark
       run: |
-        benchy run bird -d ./bird -l $QUESTIONS_LIMIT -m gpt-3.5-turbo --save-json ./results
+        benchy run ${{ vars.benchmark }} -d ./${{ vars.benchmark }} -l $QUESTIONS_LIMIT -m gpt-3.5-turbo --save-json ./results
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
